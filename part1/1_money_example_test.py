@@ -2,7 +2,7 @@
 execfile("1_money_example.py")
 import unittest
 
-print('\n Chapter 1 \n');
+print('\n Chapter 1 - 2 - 3 \n');
 
 
 row_1 = infos('IBM',1000.0,25.0,'USD')
@@ -14,10 +14,13 @@ class MyTest(unittest.TestCase):
 
     def testMultiplication(self):
         five = Dolar(5)
-        ten = five.times(2)
-        self.assertEqual(10,ten.amount())
-        fifteen = five.times(3)
-        self.assertEqual(15,fifteen.amount())
+        self.assertEqual(Dolar(10),five.times(2))
+        self.assertEqual(Dolar(15),five.times(3))
+
+    def testEquality(self):
+        self.assertTrue(Dolar(5)==Dolar(5))
+        self.assertTrue(Dolar(5)!= None)
+
 
     def test_1(self):
         self.assertEqual(inf.get_total('USD'), 65000)

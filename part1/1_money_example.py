@@ -9,11 +9,17 @@ exchange =[
 class Dolar:
     def __init__(self,amount):
         self.__amount=amount
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__amount == other.__amount
+        else:
+            return False
 
     def times(self,multiplier):
         return Dolar(self.__amount * multiplier)
-    def amount(self):
-        return self.__amount
+    
+
+
 class infos:
 
     total = -1
