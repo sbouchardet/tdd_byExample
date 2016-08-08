@@ -1,10 +1,20 @@
 #!../env/bin/python
+import abc
 
 exchange =[
 {'from':'CHF', 'to':'USD', 'rate':1.0/1.5},
 {'from':'USD', 'to':'CHF', 'rate':1.5},
 {'from':'BRS', 'to':'USD', 'rate':3.5}
 ]
+
+class Money:
+    @staticmethod
+    def dolar(amount):
+        return Dolar(amount)
+
+    @staticmethod
+    def franc(amount):
+        return Franc(amount)
 
 class Dolar:
     def __init__(self,amount):
@@ -16,8 +26,25 @@ class Dolar:
             return False
 
     def times(self,multiplier):
-        return Dolar(self.__amount * multiplier)
-    
+        return self.__class__(self.__amount * multiplier)
+
+    def dolar(self,amount):
+        return Dolar(amount)
+
+class Franc:
+    def __init__(self,amount):
+        self.__amount=amount
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__amount == other.__amount
+        else:
+            return False
+
+    def times(self,multiplier):
+        return self.__class__(self.__amount * multiplier)
+
+    def dolar(self,amount):
+        return Dolar(amount)
 
 
 class infos:
